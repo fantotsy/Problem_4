@@ -30,11 +30,15 @@ public class MyList<T extends Comparable> {
     public void addOnPosition(int position, T element) {
         Node current = header.first;
         int iterator = 0;
-        while (iterator != position) {
-            current = current.next;
-            iterator++;
+        try {
+            while (iterator != position) {
+                current = current.next;
+                iterator++;
+            }
+            current.data = element;
+        } catch (NullPointerException e) {
+            System.out.println("Position > Size OR Position < 0! Message: " + e.getMessage());
         }
-        current.data = element;
     }
 
     public void add(T element) {
@@ -95,7 +99,6 @@ public class MyList<T extends Comparable> {
                     iterator++;
                     current = current.next;
                 }
-
             }
         }
     }
